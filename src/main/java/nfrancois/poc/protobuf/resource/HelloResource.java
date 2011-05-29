@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import nfrancois.poc.protobuf.model.HelloProto.Hello;
 import nfrancois.poc.protobuf.service.HelloService;
 
 import com.google.inject.Inject;
@@ -28,18 +29,18 @@ public class HelloResource {
 	@Inject
 	private HelloService helloService;
 	
-//	@GET
-//	@Path("/{name}")
-//	public Hello reply(@PathParam("name") String name){
-//		return helloService.saysHelloToSomeone(name);
-//	}
-//
-//	@POST
-//	public Response send(String name){
-//		Hello hello = helloService.sendHello(name);
-//		URI uri = uriInfo.getAbsolutePathBuilder().build();
-//		return Response.created(uri).entity(hello).build();
-//	}		
+	@GET
+	@Path("/{name}")
+	public Hello reply(@PathParam("name") String name){
+		return helloService.saysHelloToSomeone(name);
+	}
+
+	@POST
+	public Response send(String name){
+		Hello hello = helloService.sendHello(name);
+		URI uri = uriInfo.getAbsolutePathBuilder().build();
+		return Response.created(uri).entity(hello).build();
+	}		
 	
 	
 	public void setHelloService(HelloService helloService) {
