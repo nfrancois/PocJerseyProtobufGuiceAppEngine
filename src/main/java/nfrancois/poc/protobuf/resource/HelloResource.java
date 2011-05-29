@@ -20,7 +20,7 @@ import com.google.inject.servlet.RequestScoped;
 
 @Path("hello")
 @RequestScoped
-@Produces(MediaType.APPLICATION_XML)
+@Produces("application/x-protobuf")
 public class HelloResource {
 	
 	@Context 
