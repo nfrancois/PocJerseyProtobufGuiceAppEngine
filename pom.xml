@@ -277,17 +277,20 @@
 					<include>**/*.java</include>
 				</includes>
 			</resource>
-			<resource>
-				<directory>src/main/protobuf</directory>
-				<includes>
-					<include>**</include>
-				</includes>
-			</resource>			
+<!-- 			<resource> -->
+<!-- 				<directory>src/main/protobuf</directory> -->
+<!-- 				<includes> -->
+<!-- 					<include>**</include> -->
+<!-- 				</includes> -->
+<!-- 			</resource>			 -->
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>**</include>
 				</includes>
+				<excludes>
+					<exclude>*.proto</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<testResources>
@@ -396,25 +399,25 @@
 							<goal>run</goal>
 						</goals>
 						<configuration>
-							<tasks>
+							<target>
 								<copy todir="${basedir}/target/${project.name}">
 									<fileset dir="${basedir}/src/main/webapp" />
 								</copy>
-							</tasks>
+							</target>
 						</configuration>
 					</execution>
 					<execution>
 						<id>generate-sources</id>
 						<phase>generate-sources</phase>
 			            <configuration>
-			              <tasks>
-			                <delete dir='target/generated-sources' />
+			              <target>
+<!-- 			                <mkdir dir='src/main/protobuf' /> -->
 			                <exec executable='protoc'>
-			                  <arg value='--java_out=src/main/protobuf' />
+			                  <arg value='--java_out=src/main/java' />
 			                  <arg value='src/main/resources/Hello.proto' />
 			                </exec>
-			              </tasks>
-			              <sourceRoot>target/generated-sources</sourceRoot>
+			              </target>
+<!-- 			              <sourceRoot>src/main/resources</sourceRoot> -->
 			            </configuration>
 						<goals>
 							<goal>run</goal>
