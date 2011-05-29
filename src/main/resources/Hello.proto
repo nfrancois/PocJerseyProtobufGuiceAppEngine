@@ -1,0 +1,9 @@
+package nfrancois.poc;
+
+option java_package = "nfrancois.poc.protobuf.model";
+option java_outer_classname = "HelloProto";
+
+message Hello {
+  required string name = 1;
+  required string message = 2;
+}
