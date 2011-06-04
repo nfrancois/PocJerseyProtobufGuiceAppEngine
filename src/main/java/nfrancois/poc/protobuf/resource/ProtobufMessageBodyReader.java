@@ -13,11 +13,13 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.Provider;
 
+import com.google.inject.Singleton;
 import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.Message;
 
 @Provider
 @Consumes("application/x-protobuf")
+@Singleton
 public class ProtobufMessageBodyReader implements MessageBodyReader<Message> {
 
 	public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {

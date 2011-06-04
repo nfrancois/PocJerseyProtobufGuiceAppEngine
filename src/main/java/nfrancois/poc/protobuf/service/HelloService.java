@@ -12,10 +12,6 @@ public class HelloService {
 		return getHello(name);
 	}
 	
-	public Hello sendHello(String name) {
-		return getHello(name);
-	}
-	
 	private Hello getHello(String name){
 		return HelloProto.Hello.newBuilder().setName(name).setMessage("Hello").build();
 	}

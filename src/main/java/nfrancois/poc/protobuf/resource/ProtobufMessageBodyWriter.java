@@ -15,10 +15,12 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
+import com.google.inject.Singleton;
 import com.google.protobuf.Message;
 
 @Provider
 @Produces("application/x-protobuf")
+@Singleton
 public class ProtobufMessageBodyWriter implements MessageBodyWriter<Message> {
 	public boolean isWriteable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType) {
 		return Message.class.isAssignableFrom(type);
