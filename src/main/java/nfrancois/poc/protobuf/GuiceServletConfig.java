@@ -1,11 +1,7 @@
 package nfrancois.poc.protobuf;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import nfrancois.poc.protobuf.io.ProtobufMessageBodyReader;
 import nfrancois.poc.protobuf.io.ProtobufMessageBodyWriter;
-import nfrancois.poc.protobuf.resource.HelloResource;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -15,21 +11,15 @@ import com.sun.jersey.guice.spi.container.servlet.GuiceContainer;
 
 public class GuiceServletConfig extends GuiceServletContextListener {
 	
-	private static final String HELLO_SERVER_RESOURCES_PACKAGE = HelloResource.class.getPackage().getName();
-	private static final String JERSEY_CONFIG_PROPERTY_PACKAGES = "com.sun.jersey.config.property.packages";	
-
 	@Override
 	protected Injector getInjector() {
-		final Map<String, String> params = new HashMap<String, String>();
-		params.put(JERSEY_CONFIG_PROPERTY_PACKAGES, HELLO_SERVER_RESOURCES_PACKAGE);
-		
 		return Guice.createInjector(new ServletModule() {
 
 			@Override
 			protected void configureServlets() {
 				bind(ProtobufMessageBodyReader.class);
 				bind(ProtobufMessageBodyWriter.class);
-				serve("/*").with(GuiceContainer.class, params);
+				serve("/*").with(GuiceContainer.class);
 			}
 		});
 	}
