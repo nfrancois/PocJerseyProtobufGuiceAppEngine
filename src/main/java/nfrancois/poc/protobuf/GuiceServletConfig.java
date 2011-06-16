@@ -3,6 +3,8 @@ package nfrancois.poc.protobuf;
 import java.util.HashMap;
 import java.util.Map;
 
+import nfrancois.poc.protobuf.io.ProtobufMessageBodyReader;
+import nfrancois.poc.protobuf.io.ProtobufMessageBodyWriter;
 import nfrancois.poc.protobuf.resource.HelloResource;
 
 import com.google.inject.Guice;
@@ -25,6 +27,8 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 
 			@Override
 			protected void configureServlets() {
+				bind(ProtobufMessageBodyReader.class);
+				bind(ProtobufMessageBodyWriter.class);
 				serve("/*").with(GuiceContainer.class, params);
 			}
 		});

@@ -1,4 +1,4 @@
-package nfrancois.poc.protobuf.resource;
+package nfrancois.poc.protobuf.io;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

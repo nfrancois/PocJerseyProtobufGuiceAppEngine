@@ -4,11 +4,11 @@ import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import nfrancois.poc.protobuf.io.ProtobufMessageBodyReader;
+import nfrancois.poc.protobuf.io.ProtobufMessageBodyWriter;
 import nfrancois.poc.protobuf.model.HelloProto;
 import nfrancois.poc.protobuf.model.HelloProto.Hello;
 import nfrancois.poc.protobuf.resource.HelloResource;
-import nfrancois.poc.protobuf.resource.ProtobufMessageBodyReader;
-import nfrancois.poc.protobuf.resource.ProtobufMessageBodyWriter;
 import nfrancois.poc.protobuf.service.HelloService;
 
 import org.junit.Before;
@@ -66,13 +66,14 @@ public class HelloResourceTest extends JerseyTest {
 	
 	@Test
 	public void shoulReplyHello(){
+		// Given
 		String message = "Hello";
 		String name ="Nicolas";
 		Hello hello = HelloProto.Hello.newBuilder().setName(name).setMessage(message).build();
 		when(helloServiceMock.saysHelloToSomeone("Nicolas")).thenReturn(hello);
-		
+		// When
 		ClientResponse response = resource().path("hello").path(name).get(ClientResponse.class);
-		
+		// Then
 		verify(helloServiceMock).saysHelloToSomeone(name);
 		assertThat(response.getClientResponseStatus()).isEqualTo(Status.OK);
 		assertThat(response.getType().toString()).isEqualTo("application/x-protobuf");

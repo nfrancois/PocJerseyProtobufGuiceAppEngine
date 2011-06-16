@@ -361,13 +361,11 @@
 						<phase>generate-sources</phase>
 			            <configuration>
 			              <target>
-<!-- 			                <mkdir dir='src/main/protobuf' /> -->
 			                <exec executable='protoc'>
 			                  <arg value='--java_out=src/main/java' />
 			                  <arg value='src/main/resources/Hello.proto' />
 			                </exec>
 			              </target>
-<!-- 			              <sourceRoot>src/main/resources</sourceRoot> -->
 			            </configuration>
 						<goals>
 							<goal>run</goal>
