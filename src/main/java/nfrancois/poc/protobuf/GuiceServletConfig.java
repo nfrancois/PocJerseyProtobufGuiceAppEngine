@@ -2,6 +2,7 @@ package nfrancois.poc.protobuf;
 
 import nfrancois.poc.protobuf.io.ProtobufMessageBodyReader;
 import nfrancois.poc.protobuf.io.ProtobufMessageBodyWriter;
+import nfrancois.poc.protobuf.resource.HelloResource;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -19,6 +20,7 @@ public class GuiceServletConfig extends GuiceServletContextListener {
 			protected void configureServlets() {
 				bind(ProtobufMessageBodyReader.class);
 				bind(ProtobufMessageBodyWriter.class);
+				bind(HelloResource.class);
 				serve("/*").with(GuiceContainer.class);
 			}
 		});
